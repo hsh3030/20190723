@@ -14,6 +14,8 @@ x = x.reshape((x.shape[0], x.shape[1],1))
 print("x.shape : ", x.shape)
 
 # 2. Model 구성
-model = sequential()
+model = Sequential()
 model.add(LSTM(50, activation='relu', input_shape=(3,1)))
+model.add(Dense(5))
 model.add(Dense(1))
+
