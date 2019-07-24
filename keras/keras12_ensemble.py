@@ -92,20 +92,27 @@ a = list(model.evaluate([x1_test, x2_test],[y1_test, y2_test], batch_size=1)) # 
 #loss, acc = model.evaluate(x2_test, y2_test, batch_size=1)
 print(a)
 
-#print("acc : ", acc) # acc = 분류 모델에 적용
-'''
-y_predict = model.predict([x1_test, y1_test]) # predict : 예측치 확인
-print(y_predict)
-'''
-'''
+print("acc : ", a) # acc = 분류 모델에 적용
+
+y1_predict, y2_predict = model.predict([x1_test, x2_test]) # predict : 예측치 확인
+print(y1_predict, y2_predict)
+
+
 # RMSE 구하기 (RMSE: 낮을수록 좋다.)
 from sklearn.metrics import mean_squared_error
+# def는 변수를 선언하여 return np.sqrt(mean_squared_error(y_test,y_predict))로 작동하도록 선언 
+# print("RMSE y1: ", RMSE(y1_test, y1_predict)) 사용하여 Rmsedp y1_tset와 y1_predict를 def 변수에 넣어 수행함.
+
 def RMSE(y_test, y_predict): # y_test 와 y_predict 비교하기 위한 함수 (원래의 값과 예측값을 비교)
-    return np.sqrt(mean_squared_error(y_test, y_predict)) # 비교하여 그 차이를 빼준다
-print("RMSE : ", RMSE(y_test, y_predict))
+    return np.sqrt(mean_squared_error(y_test,y_predict)) # 비교하여 그 차이를 빼준다
+
+print("RMSE y1: ", RMSE(y1_test, y1_predict))
+print("RMSE y2: ", RMSE(y2_test, y2_predict))
 
 # R2 구하기 (1에 가까울 수록 좋다.)
 from sklearn.metrics import r2_score
-r2_y_predict = r2_score(y_test, y_predict)
-print("R2 : ", r2_y_predict)
-'''
+r2_y1_predict = r2_score(y1_test, y1_predict)
+r2_y2_predict = r2_score(y2_test, y2_predict)
+
+print("R2 y1: ", r2_y1_predict)
+print("R2 y2: ", r2_y2_predict)
