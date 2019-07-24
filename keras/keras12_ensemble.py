@@ -1,4 +1,4 @@
-# keras Ensemble
+# keras Ensemble [DNN Frame Finish]
 
 #1. 데이터 구성
 import numpy as np 
