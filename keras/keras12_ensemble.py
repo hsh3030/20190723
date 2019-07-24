@@ -85,7 +85,7 @@ model.summary()
 model.compile(loss='mse', optimizer='adam', metrics=['accuracy']) #loss : 손실율 / optimizer : 적용함수 
 
 # model.fit(x, y, epochs = 100, batch_size=3) # epochs : 반복 횟수 / batch_size : 몇개씩 잘라서 할 것인가 / batch_size defalt = 32
-model.fit([x1_train, x2_train],[y1_train, y2_train], epochs = 10, batch_size=1, validation_data=([x1_val, x2_val], [y1_val, y2_val])) # model.fit : 훈련 / validation_data를 추가하면 훈련이 더 잘됨.
+model.fit([x1_train, x2_train],[y1_train, y2_train], epochs = 100, batch_size=1, validation_data=([x1_val, x2_val], [y1_val, y2_val])) # model.fit : 훈련 / validation_data를 추가하면 훈련이 더 잘됨.
 
 #4. 평가 예측
 a = list(model.evaluate([x1_test, x2_test],[y1_test, y2_test], batch_size=1)) # evaluate : 평가 [x,y 값으로]
@@ -105,6 +105,12 @@ from sklearn.metrics import mean_squared_error
 
 def RMSE(y_test, y_predict): # y_test 와 y_predict 비교하기 위한 함수 (원래의 값과 예측값을 비교)
     return np.sqrt(mean_squared_error(y_test,y_predict)) # 비교하여 그 차이를 빼준다
+RMSE1 = RMSE(y1_test, y1_predict)
+RMSE2 = RMSE(y2_test, y2_predict)
+
+print("RMSE1 : ", RMSE1)
+print("RMSE2 : ", RMSE2)
+print("RMSE : ", (RMSE1 + RMSE2)/2)
 
 print("RMSE y1: ", RMSE(y1_test, y1_predict))
 print("RMSE y2: ", RMSE(y2_test, y2_predict))
@@ -116,3 +122,4 @@ r2_y2_predict = r2_score(y2_test, y2_predict)
 
 print("R2 y1: ", r2_y1_predict)
 print("R2 y2: ", r2_y2_predict)
+print("R2 : ", (r2_y1_predict + r2_y2_predict)/2)
