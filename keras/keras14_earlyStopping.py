@@ -1,3 +1,6 @@
+### earlyStopping 적용하기 실습
+# loss, acc, val_loss, val_acc
+
 #1. 데이터 구성
 import numpy as np 
 
@@ -44,8 +47,12 @@ model.add(Dense(3))
 # model.compile(loss='mse', optimizer='adam', metrics=['accuracy']) #loss : 손실율 / optimizer : 적용함수 
 model.compile(loss='mse', optimizer='adam', metrics=['mse']) #loss : 손실율 / optimizer : 적용함수 
 
+from keras.callbacks import EarlyStopping
+# monitor = 'val_loss'  # 'val_acc # 'acc'
+early_stopping = EarlyStopping(monitor='acc', patience=100, mode='auto')
+
 # model.fit(x, y, epochs = 100, batch_size=3) # epochs : 반복 횟수 / batch_size : 몇개씩 잘라서 할 것인가 / batch_size defalt = 32
-model.fit(x_train, y_train, epochs = 100, batch_size=1, validation_data=(x_val, y_val)) # model.fit : 훈련 / validation_data를 추가하면 훈련이 더 잘됨.
+model.fit(x_train, y_train, epochs = 10000, batch_size=1, validation_data=(x_val, y_val),verbose=1, callbacks=[early_stopping]) # model.fit : 훈련 / validation_data를 추가하면 훈련이 더 잘됨.
 
 #4. 평가 예측
 loss, acc = model.evaluate(x_test, y_test, batch_size=1) # evaluate : 평가 [x,y 값으로]
