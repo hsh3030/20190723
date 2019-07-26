@@ -1,4 +1,4 @@
-1. 표준화(standardization)
+1. 표준화(standardization) = stadardscaler
 
 각 observation이 평균을 기준으로 어느 정도 떨어져 있는지를 나타낼때 사용된다. 값의 스케일이 다른 두 개의 변수가 있을 때, 
 이 변수들의 스케일 차이를 제거해 주는 효과가 있다.
