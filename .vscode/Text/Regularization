@@ -53,6 +53,7 @@ X= X-Xmin/Xmax-Xmin
 일반화 Regularization
 
 Regularization은 말 그대로 제약이다.
+
 기계 학습에서 무엇을 왜 어떻게 제약하는지에 대해서 알아보자.
 직관적으로 생각하면, 어떤 문제를 해결하는 분류기를 찾고 싶을 때 해당 분류기가
 들어있는 통이 너무 커서 적절한 답을 찾기 힘들 때 분류기들을 일단 채에 한번 걸른 후에
@@ -71,3 +72,31 @@ Regularizationd을 의미
 Regularization 방법으로는 L1 Regularization, L2 Regularization, Dropout, Early stopping 등이 있습니다.
 
 
+Overfitting
+Overfitting은 훈련 데이터에만 지나치게 적응하여 시험 데이터에 제대로 반응하지
+못하는 현상을 말한다.
+- 매개변수가 많고 표현력이 높은 모델인 경우
+- 훈련 데이터가 적은 경우
+
+Regularization
+Overfitting을 억제하기 위해서 다음과 같은 Regularization기법을 사용
+
+weight decay(L2 Regularization)
+L2 Regularization은 가장 일반적으로 사용되는 Regularization기법으로, Overfitting은
+가중치 매개변수의 값이 커서 발생하는 경우가 많기 때문에 가중치가 클 수록 큰 페널티를 
+부과하여 Overfitting을 억제하는 방법
+
+Dropout
+다른 Regularization 기법들과 (L1,L2,maxnorm) 상호 보완적인 방법으로 알려져 있다
+Dropout은 각 계층 마다 일정 비율의 뉴런을 임의로 정해 drop시켜 나머지 뉴런들만
+학습하도록 하는 방법
+이는 네트워크 내부에서 이루어지는 ensemble learning이라 생각해도 좋다.
+
+* 앙상블 학습은 개별적으로 학습시킨 여러 모델의 출력을 종합해 추론하는 방식이다
+Dropout과 별개로 실행 시점에 따로 적용할 수 있다. 뉴럴 네트워크를 개별적으로 학습시키고,
+각 네트워크에 같은 input을 주어 나온 출력 뉴런 각각의 평균을 구한 다음 여기서 가장 큰
+값을 정답으로 판정하면 되기 때문에 간단히 구현할 수 있다.
+e.g)(network1.output[1] + network2.output[1])/ 2 = ensemble_output[1]
+역전파는 ReLU 처럼 동작한다. 순전파 때 신호를 통과시킨 뉴런은 역전파 때도 그대로
+통과시키고, drop된 뉴런은 역전파 때도 신호를 차단한다.
+단 시험 때
