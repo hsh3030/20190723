@@ -30,6 +30,7 @@ x_val, x_test, y_val, y_test = train_test_split(
 print(x_test.shape)
 
 #2. 모델구성
+# save file load
 from keras.models import load_model
 model = load_model("savetest01.h5")
 
