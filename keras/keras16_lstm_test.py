@@ -37,7 +37,7 @@ print(y_test.shape)
 # 2. 모델 구성
 model = Sequential()
 
-model.add(LSTM(20, input_shape = (4, 1), return_sequences = True))
+model.add(LSTM(20, input_shape = (4, 1), return_sequences = True)) # return_sequences = 두개의 LSTM을 연결 해주는 명령어
 # model.add(LSTM(10, return_sequences = True))
 model.add(LSTM(10))
 model.add(Dense(400, activation = 'relu'))

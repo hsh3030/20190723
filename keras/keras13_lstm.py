@@ -16,7 +16,7 @@ print("x.shape : ", x.shape)
 
 # 2. Model 구성
 model = Sequential()
-model.add(LSTM(10, activation='relu', input_shape=(3,1))) # (3,1) ?행 3열 dim값 = 1
+model.add(LSTM(10, activation='relu', input_shape=(3,1))) # (3 <= ?행 3열 , 1 <= (1 = 자르는 갯수) => dim값 = 1으로 이해 하는게 좋다.) 
 model.add(Dense(80))
 model.add(Dense(70))
 model.add(Dense(50))

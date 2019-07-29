@@ -60,11 +60,11 @@ dense2_2 = Dense(7)(dense2)
 # 두 model 합치기 (concatenate)
 from keras.layers.merge import concatenate 
 merge1 = concatenate([dense1_3, dense2_2])
+
 #3번째 모델 
 middle1 = Dense(10)(merge1)
 middle2 = Dense(5)(middle1)
 middle3 = Dense(7)(middle2)
-
 
 ############################ output model #####################
 
