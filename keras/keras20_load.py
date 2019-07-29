@@ -34,15 +34,15 @@ from keras.models import load_model
 model = load_model("savetest01.h5")
 
 #3. 훈련
-# model.compile(loss='mse', optimizer='adam', metrics=['accuracy']) #loss : 손실율 / optimizer : 적용함수 
-model.compile(loss='mse', optimizer='adam', metrics=['mse']) #loss : 손실율 / optimizer : 적용함수 
+# model.compile(loss='mse', optimizer='adam', metrics=['mse']) #loss : 손실율 / optimizer : 적용함수 
+model.compile(loss='mse', optimizer='adam', metrics=['accuracy']) #loss : 손실율 / optimizer : 적용함수 
 from keras.callbacks import EarlyStopping
 import keras
 th_hist = keras.callbacks.TensorBoard(log_dir='./graph', histogram_freq = 0, write_graph=True, write_images=True)
 
 
-early_stopping = EarlyStopping(monitor='loss', patience=100, mode='auto')
-model.fit(x_train, y_train, epochs = 100, batch_size=8, callbacks=[early_stopping, th_hist], validation_data=(x_val, y_val))
+early_stopping = EarlyStopping(monitor='loss', patience=1000, mode='auto')
+model.fit(x_train, y_train, epochs = 3000, batch_size=8, callbacks=[early_stopping, th_hist], validation_data=(x_val, y_val))
  # model.fit : 훈련 / validation_data를 추가하면 훈련이 더 잘됨.
 
 #4. 평가 예측
@@ -63,3 +63,4 @@ from sklearn.metrics import r2_score
 r2_y_predict = r2_score(y_test, y_predict)
 print("R2 : ", r2_y_predict)
 print("loss : ", loss) # 0.001 이하로 만들어라~! regularizer를 적용하여
+print("acc : ", acc)

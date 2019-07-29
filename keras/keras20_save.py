@@ -10,7 +10,7 @@ model = Sequential() # Sequential = 순차적인 모델
 # model.add(Dense(5, input_dim = 1, activation = 'relu'))
 #regularizers (일반화) l1규제 적용 => kernel_regularizer=regularizers.l1(0.01) [overfit 을 막기위한 작업] <l2는 제곱해서 규제, l1은 절대값으로 규제>
 model.add(Dense(16, input_shape = (3, ), activation = 'relu', kernel_regularizer=regularizers.l2(0.01))) # input과 output값 변경
-model.add(Dense(16))
+model.add(Dense(10))
 model.add(Dense(8))
 model.add(Dense(6))
 model.add(Dense(3))
