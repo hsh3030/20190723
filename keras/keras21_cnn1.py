@@ -22,13 +22,13 @@ model = Sequential()
 model.add(Conv2D(filter_size, kernel_size, padding = 'same', input_shape = (10, 10, 1))) 
 # filter_size = output // input_shape(이미지를 넣겠다) = (28, 28, 1) =>(가로, 세로, 1 = 흑백) 3 = 컬러
 # 7을 35로 나누어 5가 나오면 5의 의미는  => 2*2 +1 (1 은 bias)
-# model.add(Conv2D(16,(2,2)))
+model.add(Conv2D(16,(2,2)))
 # MaxPooling2D 겹치게 자르지 않고 그 자른 값에서 특성이 가장 특성이 큰 하나의 값을 뽑아 내는 방법 
 model.add(MaxPooling2D(3,3))
-# model.add(Conv2D(8,(2,2)))
+model.add(Conv2D(8,(2,2)))
 model.add(Flatten())
 model.add(Dense(5)
-model.summary()
+
 
 '''
 Layer (type)                 Output Shape              Param #
@@ -41,10 +41,11 @@ conv2d_2 (Conv2D)            (None, 2, 2, 16)          1024
 Total params: 35
 Trainable params: 35
 Non-trainable params: 0
-'''
+
 ###################### activation : 활성화 함수 설정합니다 ###############################
 # ‘linear’ : 디폴트 값, 입력뉴런과 가중치로 계산된 결과값이 그대로 출력으로 나옵니다.
 # ‘relu’ : rectifier 함수, 은익층에 주로 쓰입니다.
 # ‘sigmoid’ : 시그모이드 함수, 이진 분류 문제에서 출력층에 주로 쓰입니다.
 # ‘softmax’ : 소프트맥스 함수, 다중 클래스 분류 문제에서 출력층에 주로 쓰입니다.
 #########################################################################################
+'''
