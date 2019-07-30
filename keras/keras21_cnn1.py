@@ -4,7 +4,7 @@ from keras.models import Sequential
 filter_size = 7 # 3*3으로 자른 이미지를 32장 만들어라.
 kernel_size = (2, 2) # 이미지를 몇개씩 잘라서 작업 할 것인지 정한다. (3*3)으로 자른다는 의미 (특성을 찾기 위해 자른다.)
 
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from keras.layers import Conv2D, MaxPooling2D
 
 model = Sequential()
 # 5-n+1을 하면 output (4*4)란 결과가 나온다.(input_size - kerbel_size + 1)
@@ -22,12 +22,12 @@ model = Sequential()
 model.add(Conv2D(filter_size, kernel_size, padding = 'same', input_shape = (10, 10, 1))) 
 # filter_size = output // input_shape(이미지를 넣겠다) = (28, 28, 1) =>(가로, 세로, 1 = 흑백) 3 = 컬러
 # 7을 35로 나누어 5가 나오면 5의 의미는  => 2*2 +1 (1 은 bias)
-model.add(Conv2D(16,(2,2)))
+#model.add(Conv2D(16,(2,2)))
 # MaxPooling2D 겹치게 자르지 않고 그 자른 값에서 특성이 가장 특성이 큰 하나의 값을 뽑아 내는 방법 
 model.add(MaxPooling2D(3,3))
-model.add(Conv2D(8,(2,2)))
+# model.add(Conv2D(8,(2,2)))
 model.add(Flatten())
-model.add(Dense(5)
+
 
 
 '''
