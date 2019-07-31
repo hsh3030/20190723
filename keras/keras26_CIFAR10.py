@@ -68,8 +68,6 @@ y_test = np_utils.to_categorical(y_test, NB_CLASSES)
 # X_test /= 255
 
 
-
-
 # 신경망 정의
 model = Sequential()
 model.add(Conv2D(60, (3,3), padding='same', input_shape=(IMG_ROWS, IMG_COLS, IMG_CHANNELS)))
