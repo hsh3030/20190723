@@ -1,3 +1,5 @@
+# 교차검증 [kfold]
+
 from keras.datasets import boston_housing
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout
@@ -10,8 +12,8 @@ print(test_data.shape)
 #데이터 표준화
 scaler = StandardScaler()
 scaler.fit(train_data)
-x = scaler.transform(train_data)
-print(x)
+train_data = scaler.transform(train_data)
+print(train_data)
 '''
 mean = train_data.mean(axis=0)
 train_data -= mean
@@ -32,20 +34,17 @@ def build_model():
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae']) # mae : 음수값을 없앤다.
     return model
-from sklearn.model_selection import StratifiedKFold
+
 seed = 77
 from keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor
 from sklearn.model_selection import KFold, cross_val_score
-model = KerasRegressor(build_fn=build_model, epochs=10, batch_size=1, verbose=1)
-kfold = KFold(n_splits=5, shuffle=True, random_state=seed)
+model = KerasRegressor(build_fn=build_model, epochs=10, batch_size=1, verbose=1) # fit과 같다.
+kfold = KFold(n_splits=5, shuffle=True, random_state=seed) # 잘라서 seed 값을 받아 랜덤으로 섞는다.
 results = cross_val_score(model, train_data, train_targets, cv=kfold)
 
 import numpy as np
 print(results)
 print(np.mean(results))
-
-
-
 
 '''
 k = 5 # 5번 돌리고 5번 자른다

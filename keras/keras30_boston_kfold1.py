@@ -1,3 +1,5 @@
+# 교차검증 [kfold]
+
 from keras.datasets import boston_housing
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout
