@@ -1,12 +1,18 @@
 from keras.datasets import boston_housing
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 (train_data, train_targets), (test_data, test_targets) = boston_housing.load_data()
 
 print(train_data.shape)
 print(test_data.shape)
 #데이터 표준화
+scaler = StandardScaler()
+scaler.fit(train_data)
+x = scaler.transform(train_data)
+print(x)
+'''
 mean = train_data.mean(axis=0)
 train_data -= mean
 std = train_data.std(axis=0)
@@ -14,7 +20,7 @@ train_data /= std
 
 test_data -= mean
 test_data /= std
-
+'''
 from keras import models
 from keras import layers
 
@@ -26,9 +32,22 @@ def build_model():
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae']) # mae : 음수값을 없앤다.
     return model
-from sklearn.model_selection import KFold 
-import numpy as np
+from sklearn.model_selection import StratifiedKFold
+seed = 77
+from keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor
+from sklearn.model_selection import KFold, cross_val_score
+model = KerasRegressor(build_fn=build_model, epochs=10, batch_size=1, verbose=1)
+kfold = KFold(n_splits=5, shuffle=True, random_state=seed)
+results = cross_val_score(model, train_data, train_targets, cv=kfold)
 
+import numpy as np
+print(results)
+print(np.mean(results))
+
+
+
+
+'''
 k = 5 # 5번 돌리고 5번 자른다
 num_val_samples = len(train_data) // k # 몫만 남긴다 (80)
 num_epochs = 100
@@ -62,3 +81,4 @@ print(val_data.shape)
 print(partial_train_data.shape)
 print(all_scores)
 print(np.mean(all_scores))
+'''
