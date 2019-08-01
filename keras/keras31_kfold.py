@@ -37,10 +37,10 @@ def build_model():
 
 seed = 77
 from keras.wrappers.scikit_learn import KerasClassifier, KerasRegressor
-from sklearn.model_selection import KFold, cross_val_score
-model = KerasRegressor(build_fn=build_model, epochs=10, batch_size=1, verbose=1) # fit과 같다.
+from sklearn.model_selection import KFold, cross_val_score # Regressor 회귀방식
+model = KerasRegressor(build_fn=build_model, epochs=10, batch_size=1, verbose=1) 
 kfold = KFold(n_splits=5, shuffle=True, random_state=seed) # 잘라서 seed 값을 받아 랜덤으로 섞는다.
-results = cross_val_score(model, train_data, train_targets, cv=kfold)
+results = cross_val_score(model, train_data, train_targets, cv=kfold)# fit = cross_val_score, cv(교차검증)
 
 import numpy as np
 print(results)
