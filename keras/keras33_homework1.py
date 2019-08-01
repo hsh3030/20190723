@@ -118,39 +118,20 @@ def build_network(keep_prob=0.5, optimizer='adam'):
 
     return model
 '''
-def build_network(keep_prob=0.5, optimizer='adam'):
-    inputs = Input(Conv2D(784, kernel_size = (3, 3), input_shape = (28, 28, 1), activation='relu'))
-    x = Dense(Conv2D(512, (3, 3), activation='relu', name='hidden1')(inputs)
+def build_network(keep_prob = 0.5, optimizer = 'adam'):
+    inputs = Input(shape = (28, 28, 1), name = 'input')
+    x = Conv2D(8, kernel_size = (3, 3), activation = 'relu', name = 'hidden1')(inputs)
     x = Dropout(keep_prob)(x)
-    x = Dense(256, activation='relu', name='hidden2')(x)
-    x = Dropout(keep_prob)(x)
-    x = Flatten()
-    x = Dense(128, activation='relu', name='hidden3')(x)
-    x = Dropout(keep_prob)(x)
-    prediction = Dense(10, activation='softmax', name='output')(x)
-    model = Model(inputs=inputs, output=prediction)
-    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-
+    x1 = Conv2D(4, kernel_size = (3, 3), activation = 'relu', name = 'hidden2')(x)
+    x1 = Dropout(keep_prob)(x1)
+    x2 = Conv2D(2, kernel_size = (3, 3), activation = 'relu', name = 'hidden3')(x1)
+    x2 = Dropout(keep_prob)(x2)
+    x2 = Flatten()(x2)
+    prediction = Dense(10, activation = 'softmax', name = 'output')(x2)
+    model = Model(inputs = inputs, outputs = prediction)
+    model.compile(optimizer = optimizer, loss = 'categorical_crossentropy', metrics = ['accuracy'])
     return model
-  
-def create_hyperparameters():
-    batches = [10, 20, 30, 40, 50]
-    optimizers = ['rmsprop', 'adam', 'adadelta']
-    dropout = np.linspace(0.1, 0.5, 5)
-    return{"batch_size":batches, "optimizer":optimizers, "keep_prob":dropout}
-
-from keras.wrappers.scikit_learn import KerasClassifier # classifier 분류
-model = KerasClassifier(build_fn=build_network, verbose=1) # 사이킥런으로 랩핑을 하다.
-
-hyperparameters = create_hyperparameters()
-
-from sklearn.model_selection import RandomizedSearchCV
-# estimator=> model을 가져온다.
-search = RandomizedSearchCV(estimator=model, param_distributions=hyperparameters, n_iter=10, n_jobs=1, cv=3, verbose=1)# 작업이 n_iter = 10회 수행, cv = 3겹 교차 검증
-
-search.fit(X_train, Y_train)
-
-print(search.best_params_)
+    
 def create_hyperparameters():
     batches = [10, 20, 30, 40, 50]
     optimizers = ['rmsprop', 'adam', 'adadelta']
