@@ -29,29 +29,47 @@ df = pd.read_csv('D:\kospi200test.csv')
 
 # '종가(close)' 열만 따로 빼내어 정의
 dataset = df['end'].values[::-1]
+dataset1 = df['row'].values[::-1]
+dataset2 = df['high'].values[::-1]
+
 dataset.astype('float32')
+dataset1.astype('float32')
+dataset2.astype('float32')
+
 # print(dataset)
 # print(dataset.shape)
 # print(dataset[:10])
 
 dataset = dataset.reshape(-1,1)
+dataset1 = dataset.reshape(-1,1)
+dataset2 = dataset.reshape(-1,1)
+
 # print(dataset.shape)
 
 # 데이터 정규화(normalization)
 scaler = MinMaxScaler(feature_range=(0,1))
 nptf = scaler.fit_transform(dataset)
-# print(nptf)
+nptf1 = scaler.fit_transform(dataset1)
+nptf2 = scaler.fit_transform(dataset2)
+train_data = np.concatenate([nptf, nptf1], axis=1)
+train_data = np.concatenate([train_data, nptf2], axis=1)
+print(nptf.shape)
+print(nptf1.shape)
+print(nptf2.shape)
+print(train_data.shape)
+
 
 # train, test로 각각 데이터 split
-train_size= int(len(nptf) * 0.67)
-test_size = len(nptf) - train_size
-train, test = nptf[0:train_size,:], nptf[train_size:len(nptf),:]
-# print(len(train), len(test))
-# print(train)
-# print("------여기까지 학습데이터")
-# print(test)
-# print(train.shape)
-# print(test.shape)
+train_size= int(len(train_data) * 0.67)
+test_size = len(train_data) - train_size
+train, test = train_data[0:train_size,:], train_data[train_size:len(train_data),:]
+
+print(len(train), len(test))
+print(train)
+print("------여기까지 학습데이터")
+print(test)
+print(train.shape)
+print(test.shape)
 
 # 학습을 위한 dataset 생성
 look_back = 1
@@ -76,7 +94,7 @@ model.summary()
 
 # 학습
 model.compile(loss='mean_squared_error', optimizer='adam')
-history = model.fit(x_train, y_train, epochs=100, batch_size=1, verbose=2)
+history = model.fit(x_train, y_train, epochs=100, batch_size=1, verbose=1)
 
 # predict 값 예측
 testPredict = model.predict(x_test)
@@ -91,3 +109,4 @@ lastX = np.reshape(lastX, (1, 1, 1))
 lastY = model.predict(lastX)
 lastY = scaler.inverse_transform(lastY)
 print('Predict the Close value of final day: %.2f' % lastY)
+
