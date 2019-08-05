@@ -9,7 +9,7 @@ x_data = [[0,0], [1,0], [0,1], [1,1]]
 y_data = [0,1,1,0]
 
 # 2. model
-model = SVC() # svm에서의 최적화 된 값을 준다. LinearSVC()
+model = SVC() # LinearSVC()는 선형만 되기때문에 SVC로 적용한다.
 
 # 3. 실행
 

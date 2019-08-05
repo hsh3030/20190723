@@ -11,11 +11,11 @@ y_data = np.array([0,1,1,0])
 # 2. model
 model = Sequential() # svm에서의 최적화 된 값을 준다. LinearSVC()
 model.add(Dense(60, input_dim=2, activation='relu')) # input_dim(차원) : 1 (input layer) [hidden layer]
-model.add(Dense(50, activation='sigmoid'))
-model.add(Dense(1))
+model.add(Dense(50, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 
 # 3. 실행
-model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(x_data, y_data, epochs = 100, batch_size=20)
 
 # 4. 평가 예측
