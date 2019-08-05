@@ -27,7 +27,7 @@ loss, acc = model.evaluate(x_test, y_test) # evaluate : 평가 [x,y 값으로]
 print("acc : ", acc)
 print("loss: ", loss)
 # predict : 예측치 확인
-# y_predict = model.predict(x_test)
+# y_predict = model.predict(x_test) 
 y_predict = model.predict_classes(x_test) # classes = 0,1로 변경
   
 print(y_predict)
