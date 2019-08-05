@@ -19,6 +19,6 @@ y_predict = model.predict(x_test)
 
 print(x_test, "의 예측결과 : ", y_predict)
 
-# y_test = accuracy_score([0,0,0,1] 값과 y_predict 비교하여 acc 값 출력
+# y_test = accuracy_score([0,0,0,1] 값과 y_predict 비교하여 acc 값 출력 <분류 모델에서만 쓴다>
 print("acc = ", accuracy_score([0,0,0,1], y_predict))
 

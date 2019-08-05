@@ -9,14 +9,13 @@ x_data = np.array([[0,0], [1,0], [0,1], [1,1]])
 y_data = np.array([0,1,1,0])
 
 # 2. model
-model = Sequential() # svm에서의 최적화 된 값을 준다. LinearSVC()
-model.add(Dense(60, input_dim=2, activation='relu')) # input_dim(차원) : 1 (input layer) [hidden layer]
-model.add(Dense(50, activation='relu'))
+model = Sequential()
+model.add(Dense(10, input_dim=2, activation='relu')) # input_dim(차원) : 1 (input layer) [hidden layer]
 model.add(Dense(1, activation='sigmoid'))
 
 # 3. 실행
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(x_data, y_data, epochs = 100, batch_size=20)
+model.fit(x_data, y_data, epochs = 2000, batch_size=20)
 
 # 4. 평가 예측
 
@@ -27,6 +26,8 @@ y_predict = model.predict(x_test)
 loss, acc = model.evaluate(x_test, y_test) # evaluate : 평가 [x,y 값으로]
 print("acc : ", acc)
 print("loss: ", loss)
-
-y_predict = model.predict(x_test) # predict : 예측치 확인
+# predict : 예측치 확인
+# y_predict = model.predict(x_test)
+y_predict = model.predict_classes(x_test) # classes = 0,1로 변경
+  
 print(y_predict)
