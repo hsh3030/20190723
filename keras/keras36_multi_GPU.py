@@ -19,7 +19,7 @@ def build_network(num_gpu = 1, input_shape=None):
     #완전 연결 계층들
     flatten = Flatten()(pool2)
     fc1 = Dense(512, activation='relu', name='fc1')(flatten)
-    d1 = Dropout(rate = 0.2, name = 'dropout1')(fc1)
+    d1 = Dropout(rate = 0.2, name = 'drCD.+-opout1')(fc1)
     fc2 = Dense(256, activation='relu', name='fc2')(d1)
     d1 = Dropout(rate = 0.2, name = 'dropout2')(fc2)
 

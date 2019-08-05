@@ -29,7 +29,7 @@ model.add(MaxPooling2D(3,3))
 model.add(Flatten())
 
 
-
+model.summary()
 '''
 Layer (type)                 Output Shape              Param #
 =================================================================

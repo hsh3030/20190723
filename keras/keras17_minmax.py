@@ -58,7 +58,7 @@ y = array([4,5,6,7,8,9,10,11,12,13,50,60,70])
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 # StandardScaler, MinMaxScaler 사용법
 # x 를 transform을 하면 다른 변수는 fit 할 필요 없이 transfrom(ex>x_test) 로 넣어주면 된다.
-scaler = StandardScaler()
+# scaler = StandardScaler()
 scaler = MinMaxScaler()
 scaler.fit(x)
 x = scaler.transform(x)

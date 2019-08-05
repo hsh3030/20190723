@@ -55,7 +55,7 @@ model.add(Dense(1))
 # model.compile(loss='mse', optimizer='adam', metrics=['accuracy']) #loss : 손실율 / optimizer : 적용함수 
 model.compile(loss='mse', optimizer='adam', metrics=['mse']) #loss : 손실율 / optimizer : 적용함수 
 from keras.callbacks import EarlyStopping
-
+# TensorBoard 시각화
 import keras
 th_hist = keras.callbacks.TensorBoard(log_dir='./graph', histogram_freq = 0, write_graph=True, write_images=True)
 

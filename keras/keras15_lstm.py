@@ -37,7 +37,7 @@ print(y_test.shape)
 
 # 2. model 구성
 model = Sequential()
-# return_sequences = True [LSTM을 정의]
+# return_sequences = True [LSTM을 정의] 연결하여 쓴다.
 model.add(LSTM(32, input_shape=(4,1), return_sequences = True))
 model.add(LSTM(10, return_sequences = True))
 model.add(LSTM(10, return_sequences = True))

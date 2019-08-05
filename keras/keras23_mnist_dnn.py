@@ -15,7 +15,7 @@ train_images = train_images.astype('float32') / 255
 
 test_images = test_images.reshape((10000, 28 * 28))
 test_images = test_images.astype('float32') / 255
-
+# to_categorical one_hot encoding 분류방식
 from keras.utils import to_categorical
 train_labels = to_categorical(train_labels)
 test_labels = to_categorical(test_labels)
