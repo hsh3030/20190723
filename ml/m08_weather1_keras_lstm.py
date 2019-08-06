@@ -54,10 +54,12 @@ model.add(Dense(32))
 model.add(Dense(32))
 model.add(Dense(32))
 model.add(Dense(1))
-# loss :  1.9160313865481111
-# acc :  1.9160313865481111
-# R2 :  0.9694333237865327
-# RMSE :  1.3842078216127576
+
+# loss :  1.5877569439601287
+# acc :  1.5877569439601287
+# R2 :  0.9746703261416477
+# RMSE :  1.2600622174826062
+
 from keras.callbacks import EarlyStopping
 early_stopping = EarlyStopping(monitor='loss', patience=50, mode='auto')
 model.compile(optimizer='adam', loss='mse', metrics=['mse'])
