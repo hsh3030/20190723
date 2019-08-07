@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.metrics import accuracy_score
-# all_estimators => 
 from sklearn.utils.testing import all_estimators
 import warnings
 
