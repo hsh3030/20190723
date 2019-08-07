@@ -63,6 +63,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 
 pipe = Pipeline([("scaler", MinMaxScaler()), ('svm', SVC())])
+pipe.fit(x_train, y_train)
+
 search = RandomizedSearchCV(estimator=pipe, param_distributions=hyperparameters,
                             n_iter=10, n_jobs=10, cv=5, verbose=1)# 작업이 n_iter = 10회 수행, cv = 3겹 교차 검증
 
