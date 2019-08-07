@@ -22,8 +22,14 @@ parameters = [
     {"C": [1, 10, 100, 1000], "kernel":["rbf"], "gamma":[0.001, 0.0001]},
     {"C": [1, 10, 100, 1000], "kernel":["sigmoid"], "gamma":[0.001, 0.0001]}
 ]
-# SVC(C=1, cache_size=200, class_weight=None, coef0=0.0, decision_function_shape='ovr', degree=3, gamma='auto_deprecated',  kernel='linear', max_iter=-1, probability=False, random_state=None,
-#   shrinking=True, tol=0.001, verbose=False)
+'''
+최적의 매개 변수 =  SVC(C=1000, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+최종 정답률 =  1.0
+최종 정답률 =  1.0
+'''
 # 그리드 서치 === 2
 kfold_cv = KFold(n_splits=5, shuffle=True)
 clf = GridSearchCV( SVC(), parameters, cv=kfold_cv)

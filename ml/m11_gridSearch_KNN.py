@@ -23,7 +23,13 @@ parameters = [
     {"n_neighbors": [3, 5, 7, 10], "weights":["distance"], "algorithm":['auto', 'ball_tree']},
     {"n_neighbors": [3, 5, 7, 10], "weights":["distance"], "algorithm":['kd_tree', 'brute']}
 ]
-
+'''
+최적의 매개 변수 =  KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=None, n_neighbors=7, p=2,
+           weights='uniform')
+최종 정답률 =  0.9666666666666667
+최종 정답률 =  0.9666666666666667
+'''
 # 그리드 서치 === 2
 kfold_cv = KFold(n_splits=5, shuffle=True)
 clf = GridSearchCV( KNeighborsClassifier(), parameters, cv=kfold_cv)

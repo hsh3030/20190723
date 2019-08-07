@@ -20,17 +20,19 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, train
 # 그리드 서치에서 사용할 매개 변수 === 1
 parameters = [
     {"n_estimators": [1, 5, 8, 10], "criterion":["gini"], "max_depth":[1, 5, 8, 10]},
-    {"n_estimators": [1, 5, 8, 10], "criterion":["entropy"], "max_depth":[2, 6, 7, 9]},
-    {"n_estimators": [1, 5, 8, 10], "criterion":["entropy"], "max_depth":[1, 4, 7, 9]}
+    {"n_estimators": [1, 5, 8, 10], "criterion":["entropy"], "max_depth":[1, 5, 8, 10]},
+    {"n_estimators": [1, 5, 8, 10], "criterion":["entropy"], "max_depth":[1, 5, 8, 10]}
 ]
 '''
-erion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
+최적의 매개 변수 =  RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=5, max_features='auto', max_leaf_nodes=None,
             min_impurity_decrease=0.0, min_impurity_split=None,
             min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=None,
+            min_weight_fraction_leaf=0.0, n_estimators=1, n_jobs=None,
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
+최종 정답률 =  0.9666666666666667
+최종 정답률 =  0.9666666666666667
 '''
 # 그리드 서치 === 2
 kfold_cv = KFold(n_splits=5, shuffle=True)
