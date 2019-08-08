@@ -33,7 +33,7 @@ parameters = {
 '''
 # 그리드 서치 === 2
 kfold_cv = KFold(n_splits=5, shuffle=True)
-clf = RandomizedSearchCV (SVC(), parameters, cv=kfold_cv)
+clf = c
 clf.fit(x_train, y_train)
 print("최적의 매개 변수 = ", clf.best_estimator_)
 

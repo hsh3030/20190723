@@ -1,18 +1,14 @@
-import matplotlib.pyplot as plt
-from pandas import read_csv
-import math
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_squared_error
+import pygame
+import sys
+import time
+import random
 
-dataend = read_csv('D:\kospi200test.csv', usecols=[4])
-print(dataend.shape)
+from pygame.locals import *
 
-data_trainX = dataend[0 : 500]
-data_testX = dataend[500:600]
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 
-data_trainX = data_trainX.values.reshape(data_trainX.shape[0], data_trainX.shape[1])
-print(data_trainX.shape)
-
+if __name__ == '__main__':
+    pygame.init()
+    window = pygame.display.set_mode(WINDOW_WIDTH, WINDOW_HEIGHT), 0, 32)
+    pygame.display.s
