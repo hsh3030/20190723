@@ -49,7 +49,7 @@ parameters = {
     "importance_type": ['gain'], "n_jobs": [10], "base_score": [0.3, 0.5], "reg_alpha": [0, 1, 2, 3, 4]
 }
 # 직선 회귀 분석하기
-kfold_cv = KFold(n_splits=500, shuffle=True)
+kfold_cv = KFold(n_splits=5, shuffle=True)
 model = RandomizedSearchCV(XGBRegressor(), parameters, cv=kfold_cv)
 model.fit(train_x, train_y)
 print("최적의 매개 변수 = ", model.best_estimator_)

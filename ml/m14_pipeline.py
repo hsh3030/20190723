@@ -25,6 +25,6 @@ from sklearn.pipeline import make_pipeline
 pipe = make_pipeline(MinMaxScaler(), SVC(C=100))
 
 pipe.fit(x_train, y_train)
-
+print(x_train.shape)
+print(x_test.shape)
 print("테스트 점수 : ", pipe.score(x_test, y_test))
-

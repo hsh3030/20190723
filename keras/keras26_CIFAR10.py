@@ -1,7 +1,6 @@
 # 시각화 작업
 
 from keras.datasets import cifar10
-from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import BatchNormalization
 from keras.layers.core import Dense, Dropout, Activation, Flatten
