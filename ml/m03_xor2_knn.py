@@ -25,3 +25,4 @@ print(x_test, "의 예측결과 : ", y_predict)
 # accuracy_score 단순 비교 분석 
 print("acc = ", accuracy_score([0,1,1,0], y_predict))
 
+#########
